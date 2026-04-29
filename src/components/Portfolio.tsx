@@ -19,25 +19,13 @@ const portfolioItems = [
     id: 3,
     title: "Complete Transformation",
     category: "Full Yard Remodel",
-    image: "https://images.unsplash.com/photo-1768333222242-605fc80d86d9?q=80&w=2940&auto=format&fit=crop", // Lush green garden with manicured hedges and trees
-  },
-  {
-    id: 4,
-    title: "Garden Overhaul",
-    category: "Full Yard Remodel",
-    image: "https://images.unsplash.com/photo-1758790122077-499214dc8396?q=80&w=2940&auto=format&fit=crop", // Lush green garden with trees and plants behind fence
+    image: "https://images.unsplash.com/photo-1764208637294-49d0eccacf40?q=80&w=2940&auto=format&fit=crop", // Lush green garden with mature trees and manicured lawn (matches Full Yard Remodel service photo)
   },
   {
     id: 5,
     title: "Seasonal Cleanup",
     category: "Yard Maintenance",
     image: "https://images.unsplash.com/photo-1689728318937-17d24bc0a65c?q=80&w=2940&auto=format&fit=crop", // a man using a lawn mower to cut grass
-  },
-  {
-    id: 6,
-    title: "Canopy Thinning",
-    category: "Tree Trimming",
-    image: "https://images.unsplash.com/photo-1767642321050-23f637b1f0be?q=80&w=2940&auto=format&fit=crop", // Arborist trimming tree branches with chainsaw from a lift
   },
 ];
 

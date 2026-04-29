@@ -18,7 +18,7 @@ const services = [
     title: "Tree Trimming",
     description: "Expert tree care to ensure the health and beauty of your landscape. We handle pruning, shaping, and safe removal of overgrown branches.",
     features: ["Precision Pruning", "Canopy Thinning", "Deadwood Removal"],
-    image: "https://images.unsplash.com/photo-1767642321050-23f637b1f0be?q=80&w=2940&auto=format&fit=crop", // Arborist trimming tree branches with chainsaw from a lift
+    image: "https://images.unsplash.com/photo-1754322449185-31f56117ed87?q=80&w=2940&auto=format&fit=crop", // A tree arborist is cutting a branch (formerly Large Oak Pruning gallery photo)
     reverse: true,
   },
   {
