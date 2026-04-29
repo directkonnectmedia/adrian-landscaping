@@ -25,7 +25,7 @@ export default function Hero() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="flex items-center justify-center space-x-2 sm:space-x-4 mb-6 drop-shadow-lg"
         >
-          <span className="text-5xl sm:text-6xl md:text-7xl">🌳</span>
+          <span className="text-5xl sm:text-6xl md:text-7xl">🌲</span>
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight bg-gradient-to-r from-white to-green-500 bg-clip-text text-transparent">
             Adrian Landscaping
           </h1>
