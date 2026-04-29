@@ -1,26 +1,30 @@
 {
-  "name": "adrian-landscape",
-  "version": "1.0.0",
-  "description": "A next project generated based on a UIDL document",
-  "main": "index.js",
+  "name": "adrian-landscaping",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "dev": "next",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "export": "next export"
+    "lint": "next lint"
   },
-  "author": "TeleportHQ",
-  "license": "MIT",
   "dependencies": {
-    "@teleporthq/react-components": "latest",
-    "next": "^12.1.10",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "next-intl": "2.10.0",
-    "dangerous-html": "0.1.13"
+    "framer-motion": "^12.38.0",
+    "lucide-react": "^0.474.0",
+    "next": "15.1.6",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
-  "engines": {
-    "node": ">=18.x"
-  },
-  "devDependencies": {}
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4.2.4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.1.6",
+    "postcss": "^8",
+    "tailwindcss": "^4.2.4",
+    "typescript": "^5"
+  }
 }
