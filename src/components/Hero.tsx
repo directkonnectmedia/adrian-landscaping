@@ -11,7 +11,7 @@ export default function Hero() {
       <div 
         className="absolute inset-0 bg-cover bg-center z-0"
         style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1542314831-c6a4d14b4344?q=80&w=2940&auto=format&fit=crop')", // Park with lots of trees and field of grass
+          backgroundImage: "url('https://images.unsplash.com/photo-1505322022379-7c3353ee6291?q=80&w=2940&auto=format&fit=crop')", // Public park with lots of trees and grass field
         }}
       >
         <div className="absolute inset-0 bg-gray-900/50"></div>
@@ -19,15 +19,17 @@ export default function Hero() {
 
       {/* Content */}
       <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto mt-16">
-        <motion.h1 
+        <motion.div 
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight mb-6 drop-shadow-lg"
+          className="flex items-center justify-center space-x-2 sm:space-x-4 mb-6 drop-shadow-lg"
         >
-          Crafted Outdoor Living, <br className="hidden sm:block" />
-          <span className="text-yellow-400">Built to Last</span>
-        </motion.h1>
+          <span className="text-5xl sm:text-6xl md:text-7xl">🌳</span>
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight bg-gradient-to-r from-white to-green-500 bg-clip-text text-transparent">
+            Adrian Landscaping
+          </h1>
+        </motion.div>
         
         <motion.p 
           initial={{ opacity: 0, y: 30 }}

@@ -5,39 +5,39 @@ import { motion } from "framer-motion";
 const portfolioItems = [
   {
     id: 1,
-    title: "Modern Paver Patio",
+    title: "Pristine Lawn Care",
     category: "Yard Maintenance",
-    image: "https://images.unsplash.com/photo-1592424040905-1811e5fae5ff?q=80&w=2940&auto=format&fit=crop", // Portrait-style image
+    image: "https://images.unsplash.com/photo-1592424040905-1811e5fae5ff?q=80&w=2940&auto=format&fit=crop", // Portrait-style image of a clean lawn
   },
   {
     id: 2,
-    title: "Lush Garden Design",
+    title: "Large Oak Pruning",
     category: "Tree Trimming",
-    image: "https://images.unsplash.com/photo-1622383563227-04401ab4e5ea?q=80&w=2940&auto=format&fit=crop", // Portrait-style image
+    image: "https://images.unsplash.com/photo-1622383563227-04401ab4e5ea?q=80&w=2940&auto=format&fit=crop", // Portrait-style image of an arborist/tree
   },
   {
     id: 3,
-    title: "Stone Retaining Wall",
-    category: "Full Remodel",
-    image: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=2940&auto=format&fit=crop", // Portrait-style image
+    title: "Complete Transformation",
+    category: "Full Yard Remodel",
+    image: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=2940&auto=format&fit=crop", // Portrait-style image of a remodeled yard
   },
   {
     id: 4,
-    title: "Backyard Oasis",
-    category: "Full Remodel",
-    image: "https://images.unsplash.com/photo-1558904541-efa843a96f0f?q=80&w=2940&auto=format&fit=crop", // Portrait-style image
+    title: "Garden Overhaul",
+    category: "Full Yard Remodel",
+    image: "https://images.unsplash.com/photo-1558904541-efa843a96f0f?q=80&w=2940&auto=format&fit=crop", // Portrait-style image of a beautiful garden
   },
   {
     id: 5,
-    title: "Custom Walkway",
+    title: "Seasonal Cleanup",
     category: "Yard Maintenance",
-    image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?q=80&w=2940&auto=format&fit=crop", // Portrait-style image
+    image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?q=80&w=2940&auto=format&fit=crop", // Portrait-style image of a well maintained yard
   },
   {
     id: 6,
-    title: "Native Plant Garden",
+    title: "Canopy Thinning",
     category: "Tree Trimming",
-    image: "https://images.unsplash.com/photo-1598902108854-10e335adac99?q=80&w=2940&auto=format&fit=crop", // Portrait-style image
+    image: "https://images.unsplash.com/photo-1598902108854-10e335adac99?q=80&w=2940&auto=format&fit=crop", // Portrait-style image of tall trees
   },
 ];
 

@@ -10,7 +10,7 @@ const services = [
     title: "Yard Maintenance",
     description: "Keep your outdoor space looking pristine year-round. Our comprehensive maintenance plans ensure your property is always ready for your next gathering.",
     features: ["Weekly/Bi-weekly Mowing", "Weed Control", "Seasonal Cleanups"],
-    image: "https://images.unsplash.com/photo-1592424040905-1811e5fae5ff?q=80&w=2940&auto=format&fit=crop", // Portrait-style appropriate
+    image: "https://images.unsplash.com/photo-1589923188651-268a976f809f?q=80&w=2940&auto=format&fit=crop", // Landscaper cutting grass
     reverse: false,
   },
   {
@@ -18,7 +18,7 @@ const services = [
     title: "Tree Trimming",
     description: "Expert tree care to ensure the health and beauty of your landscape. We handle pruning, shaping, and safe removal of overgrown branches.",
     features: ["Precision Pruning", "Canopy Thinning", "Deadwood Removal"],
-    image: "https://images.unsplash.com/photo-1622383563227-04401ab4e5ea?q=80&w=2940&auto=format&fit=crop", // Portrait-style appropriate
+    image: "https://images.unsplash.com/photo-1542618991-628a5c317f22?q=80&w=2940&auto=format&fit=crop", // Someone cutting down a tree with a chainsaw
     reverse: true,
   },
   {
@@ -26,7 +26,7 @@ const services = [
     title: "Full Yard Remodel",
     description: "Contact us today for a full Yard Remodel. Tell us what you want, and Adrian can give you his input and we can get something started for you.",
     features: ["Custom Design Plans", "Hardscaping & Softscaping", "Complete Transformations"],
-    image: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=2940&auto=format&fit=crop", // Portrait-style appropriate
+    image: "https://images.unsplash.com/photo-1558904541-efa843a96f0f?q=80&w=2940&auto=format&fit=crop", // Beautiful backyard with multiple plants and beautiful trees
     reverse: false,
   },
 ];
