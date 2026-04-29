@@ -1,0 +1,7 @@
+User-agent: Googlebot
+Disallow: /nogooglebot/
+
+User-agent: *
+Allow: /
+
+Sitemap: https://dapper-regular-fish-d9lv0y.teleporthq.site/sitemap.xml

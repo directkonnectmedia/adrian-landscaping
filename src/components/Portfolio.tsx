@@ -1,0 +1,96 @@
+"use client";
+
+import { motion } from "framer-motion";
+
+const portfolioItems = [
+  {
+    id: 1,
+    title: "Modern Paver Patio",
+    category: "Yard Maintenance",
+    image: "https://images.unsplash.com/photo-1592424040905-1811e5fae5ff?q=80&w=2940&auto=format&fit=crop", // Portrait-style image
+  },
+  {
+    id: 2,
+    title: "Lush Garden Design",
+    category: "Tree Trimming",
+    image: "https://images.unsplash.com/photo-1622383563227-04401ab4e5ea?q=80&w=2940&auto=format&fit=crop", // Portrait-style image
+  },
+  {
+    id: 3,
+    title: "Stone Retaining Wall",
+    category: "Full Remodel",
+    image: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=2940&auto=format&fit=crop", // Portrait-style image
+  },
+  {
+    id: 4,
+    title: "Backyard Oasis",
+    category: "Full Remodel",
+    image: "https://images.unsplash.com/photo-1558904541-efa843a96f0f?q=80&w=2940&auto=format&fit=crop", // Portrait-style image
+  },
+  {
+    id: 5,
+    title: "Custom Walkway",
+    category: "Yard Maintenance",
+    image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?q=80&w=2940&auto=format&fit=crop", // Portrait-style image
+  },
+  {
+    id: 6,
+    title: "Native Plant Garden",
+    category: "Tree Trimming",
+    image: "https://images.unsplash.com/photo-1598902108854-10e335adac99?q=80&w=2940&auto=format&fit=crop", // Portrait-style image
+  },
+];
+
+export default function Portfolio() {
+  return (
+    <section id="portfolio" className="py-24 bg-gray-50 border-t border-gray-200 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-sm font-bold text-green-500 tracking-widest uppercase mb-3">Our Recent Work</h2>
+          <h3 className="text-3xl md:text-4xl font-extrabold text-gray-900 tracking-tight mb-4">
+            Excellence in Landscape Design
+          </h3>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Take a look at some of the stunning outdoor spaces we've created for our clients.
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {portfolioItems.map((item, index) => (
+            <motion.div 
+              key={item.id} 
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className="group relative rounded-2xl overflow-hidden shadow-md h-[450px] bg-gray-200" // Set height for portrait style
+            >
+              <div 
+                className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                style={{ backgroundImage: `url('${item.image}')` }}
+              />
+              {/* Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/30 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-300"></div>
+              
+              {/* Content */}
+              <div className="absolute inset-x-0 bottom-0 p-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                <span className="text-green-400 font-semibold text-sm tracking-wider uppercase mb-2 block">
+                  {item.category}
+                </span>
+                <h4 className="text-white text-2xl font-bold">
+                  {item.title}
+                </h4>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
