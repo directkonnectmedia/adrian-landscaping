@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
+import AnimatedTree from "./AnimatedTree";
 
 export default function Hero() {
   return (
@@ -23,9 +24,9 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="flex items-center justify-center space-x-2 sm:space-x-4 mb-6 drop-shadow-lg"
+          className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-6 mb-6 drop-shadow-lg"
         >
-          <span className="text-5xl sm:text-6xl md:text-7xl">🌲</span>
+          <AnimatedTree />
           <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold tracking-tight bg-gradient-to-r from-white to-green-500 bg-clip-text text-transparent">
             Adrian Landscaping
           </h1>
