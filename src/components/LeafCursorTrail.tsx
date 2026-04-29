@@ -15,16 +15,30 @@ interface TrailLeaf {
   color: string;
 }
 
+const GREEN_COLORS = [
+  "#16A34A", // Vibrant green
+  "#22C55E", // Grass green
+  "#15803D", // Forest green
+  "#166534", // Deep green
+  "#4ADE80", // Light spring green
+  "#65A30D", // Lime green
+];
+
 const FALL_COLORS = [
   "#EA580C", // Burnt orange
   "#F97316", // Orange
   "#FB923C", // Light orange
   "#D97706", // Amber dark
-  "#B45309", // Bronze
-  "#92400E", // Deep autumn brown
   "#FACC15", // Gold yellow
-  "#CA8A04", // Mustard
 ];
+
+// Pick a color: ~85% green, ~15% orange/fall
+const pickLeafColor = () => {
+  if (Math.random() < 0.85) {
+    return GREEN_COLORS[Math.floor(Math.random() * GREEN_COLORS.length)];
+  }
+  return FALL_COLORS[Math.floor(Math.random() * FALL_COLORS.length)];
+};
 
 // Generate a unique id
 let leafIdCounter = 0;
@@ -46,21 +60,36 @@ export default function LeafCursorTrail() {
       scale: 0.6 + Math.random() * 0.7,
       drift: (Math.random() - 0.5) * 200, // Horizontal drift
       fall: 100 + Math.random() * 200, // Vertical fall
-      duration: 2 + Math.random() * 2.5,
-      color: FALL_COLORS[Math.floor(Math.random() * FALL_COLORS.length)],
+      duration: 5 + Math.random() * 4, // 5-9 seconds total lifetime
+      color: pickLeafColor(),
     };
-    setLeaves((prev) => [...prev.slice(-40), newLeaf]); // Keep max 40 to maintain perf
+    setLeaves((prev) => [...prev.slice(-50), newLeaf]); // Keep max 50 to maintain perf
   }, []);
 
-  // Cleanup expired leaves periodically
+  // Cleanup expired leaves periodically (use a Map to track spawn time)
+  const spawnTimes = useRef<Map<number, number>>(new Map());
+
   useEffect(() => {
     const interval = setInterval(() => {
+      const now = Date.now();
       setLeaves((prev) => {
-        // Remove leaves older than 5 seconds (assumed expired)
-        const now = Date.now();
-        return prev.filter((l) => now - l.id < 5000);
+        const filtered = prev.filter((l) => {
+          const spawnTime = spawnTimes.current.get(l.id);
+          if (!spawnTime) {
+            spawnTimes.current.set(l.id, now);
+            return true;
+          }
+          // Remove leaf 1.5s after its animation duration completes
+          const lifetime = (l.duration + 1.5) * 1000;
+          if (now - spawnTime > lifetime) {
+            spawnTimes.current.delete(l.id);
+            return false;
+          }
+          return true;
+        });
+        return filtered;
       });
-    }, 2000);
+    }, 1000);
     return () => clearInterval(interval);
   }, []);
 
@@ -110,17 +139,17 @@ export default function LeafCursorTrail() {
               rotate: 0,
             }}
             animate={{
-              opacity: [1, 1, 0],
-              x: [leaf.x, leaf.x + leaf.drift * 0.5, leaf.x + leaf.drift],
-              y: [leaf.y, leaf.y + leaf.fall * 0.4, leaf.y + leaf.fall],
-              scale: [0, leaf.scale, leaf.scale * 0.9],
-              rotate: [0, leaf.rotation * 0.5, leaf.rotation],
+              opacity: [1, 1, 1, 1, 0],
+              x: [leaf.x, leaf.x + leaf.drift * 0.5, leaf.x + leaf.drift, leaf.x + leaf.drift, leaf.x + leaf.drift],
+              y: [leaf.y, leaf.y + leaf.fall * 0.4, leaf.y + leaf.fall, leaf.y + leaf.fall, leaf.y + leaf.fall],
+              scale: [0, leaf.scale, leaf.scale * 0.95, leaf.scale * 0.9, leaf.scale * 0.85],
+              rotate: [0, leaf.rotation * 0.5, leaf.rotation, leaf.rotation, leaf.rotation * 1.05],
             }}
-            exit={{ opacity: 0 }}
+            exit={{ opacity: 0, transition: { duration: 0.5 } }}
             transition={{
               duration: leaf.duration,
               ease: "easeOut",
-              times: [0, 0.4, 1],
+              times: [0, 0.25, 0.5, 0.85, 1],
             }}
             className="absolute top-0 left-0 will-change-transform"
             style={{
