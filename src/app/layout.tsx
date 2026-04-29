@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import LeafCursorTrail from "@/components/LeafCursorTrail";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -22,6 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} antialiased scroll-smooth`}>
       <body className="min-h-screen flex flex-col font-sans text-gray-900">
+        <LeafCursorTrail />
         <Header />
         <main className="flex-grow">
           {children}
