@@ -60,7 +60,7 @@ export default function LeafCursorTrail() {
       scale: 0.6 + Math.random() * 0.7,
       drift: (Math.random() - 0.5) * 200, // Horizontal drift
       fall: 100 + Math.random() * 200, // Vertical fall
-      duration: 5 + Math.random() * 4, // 5-9 seconds total lifetime
+      duration: 2.5 + Math.random() * 1.5, // 2.5-4 seconds total lifetime
       color: pickLeafColor(),
     };
     setLeaves((prev) => [...prev.slice(-50), newLeaf]); // Keep max 50 to maintain perf
@@ -79,8 +79,8 @@ export default function LeafCursorTrail() {
             spawnTimes.current.set(l.id, now);
             return true;
           }
-          // Remove leaf 1.5s after its animation duration completes
-          const lifetime = (l.duration + 1.5) * 1000;
+          // Remove leaf 0.5s after its animation duration completes
+          const lifetime = (l.duration + 0.5) * 1000;
           if (now - spawnTime > lifetime) {
             spawnTimes.current.delete(l.id);
             return false;
@@ -139,17 +139,17 @@ export default function LeafCursorTrail() {
               rotate: 0,
             }}
             animate={{
-              opacity: [1, 1, 1, 1, 0],
-              x: [leaf.x, leaf.x + leaf.drift * 0.5, leaf.x + leaf.drift, leaf.x + leaf.drift, leaf.x + leaf.drift],
-              y: [leaf.y, leaf.y + leaf.fall * 0.4, leaf.y + leaf.fall, leaf.y + leaf.fall, leaf.y + leaf.fall],
-              scale: [0, leaf.scale, leaf.scale * 0.95, leaf.scale * 0.9, leaf.scale * 0.85],
-              rotate: [0, leaf.rotation * 0.5, leaf.rotation, leaf.rotation, leaf.rotation * 1.05],
+              opacity: [1, 1, 1, 0],
+              x: [leaf.x, leaf.x + leaf.drift * 0.5, leaf.x + leaf.drift, leaf.x + leaf.drift],
+              y: [leaf.y, leaf.y + leaf.fall * 0.4, leaf.y + leaf.fall, leaf.y + leaf.fall],
+              scale: [0, leaf.scale, leaf.scale * 0.95, leaf.scale * 0.85],
+              rotate: [0, leaf.rotation * 0.5, leaf.rotation, leaf.rotation * 1.05],
             }}
-            exit={{ opacity: 0, transition: { duration: 0.5 } }}
+            exit={{ opacity: 0, transition: { duration: 0.3 } }}
             transition={{
               duration: leaf.duration,
               ease: "easeOut",
-              times: [0, 0.25, 0.5, 0.85, 1],
+              times: [0, 0.4, 0.65, 1],
             }}
             className="absolute top-0 left-0 will-change-transform"
             style={{
