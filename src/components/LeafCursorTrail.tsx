@@ -157,30 +157,22 @@ export default function LeafCursorTrail() {
             }}
           >
             <svg
-              viewBox="0 0 32 32"
+              viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
               className="w-5 h-5 md:w-6 md:h-6 drop-shadow-md"
             >
-              {/* Maple-style fall leaf */}
+              {/* Oval leaf shape (matches the AnimatedTree logo leaves) */}
               <path
-                d="M16 2 C 18 8, 22 8, 26 6 C 24 10, 25 14, 28 16 C 23 16, 20 19, 21 24 C 18 22, 14 22, 11 24 C 12 19, 9 16, 4 16 C 7 14, 8 10, 6 6 C 10 8, 14 8, 16 2 Z"
+                d="M12 2C8 2 4 6 4 12C4 18 10 22 12 22C14 22 20 18 20 12C20 6 16 2 12 2Z"
                 fill={leaf.color}
               />
-              {/* Stem */}
+              {/* Center vein/stem */}
               <path
-                d="M16 24 L16 30"
-                stroke={leaf.color}
-                strokeWidth="1.5"
+                d="M12 22V12"
+                stroke="rgba(0,0,0,0.35)"
+                strokeWidth="1.2"
                 strokeLinecap="round"
-              />
-              {/* Vein detail */}
-              <path
-                d="M16 6 L16 22 M10 14 L16 18 L22 14"
-                stroke="rgba(0,0,0,0.2)"
-                strokeWidth="0.8"
-                strokeLinecap="round"
-                fill="none"
               />
             </svg>
           </motion.div>
