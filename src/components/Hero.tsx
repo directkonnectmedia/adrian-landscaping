@@ -11,7 +11,7 @@ export default function Hero() {
       <div 
         className="absolute inset-0 bg-cover bg-center z-0"
         style={{
-          backgroundImage: "url('https://images.unsplash.com/photo-1505322022379-7c3353ee6291?q=80&w=2940&auto=format&fit=crop')", // Public park with lots of trees and grass field
+          backgroundImage: "url('https://images.unsplash.com/photo-1726597903368-37d79bb01d95?q=80&w=2940&auto=format&fit=crop')", // Public park filled with lots of green grass and lots of trees
         }}
       >
         <div className="absolute inset-0 bg-gray-900/50"></div>

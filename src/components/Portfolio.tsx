@@ -7,37 +7,37 @@ const portfolioItems = [
     id: 1,
     title: "Pristine Lawn Care",
     category: "Yard Maintenance",
-    image: "https://images.unsplash.com/photo-1592424040905-1811e5fae5ff?q=80&w=2940&auto=format&fit=crop", // Portrait-style image of a clean lawn
+    image: "https://images.unsplash.com/photo-1764969370921-7c8df49171cd?q=80&w=2940&auto=format&fit=crop", // A freshly mown lawn in a sunny park
   },
   {
     id: 2,
     title: "Large Oak Pruning",
     category: "Tree Trimming",
-    image: "https://images.unsplash.com/photo-1622383563227-04401ab4e5ea?q=80&w=2940&auto=format&fit=crop", // Portrait-style image of an arborist/tree
+    image: "https://images.unsplash.com/photo-1754322449185-31f56117ed87?q=80&w=2940&auto=format&fit=crop", // A tree arborist is cutting a branch
   },
   {
     id: 3,
     title: "Complete Transformation",
     category: "Full Yard Remodel",
-    image: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=2940&auto=format&fit=crop", // Portrait-style image of a remodeled yard
+    image: "https://images.unsplash.com/photo-1768333222242-605fc80d86d9?q=80&w=2940&auto=format&fit=crop", // Lush green garden with manicured hedges and trees
   },
   {
     id: 4,
     title: "Garden Overhaul",
     category: "Full Yard Remodel",
-    image: "https://images.unsplash.com/photo-1558904541-efa843a96f0f?q=80&w=2940&auto=format&fit=crop", // Portrait-style image of a beautiful garden
+    image: "https://images.unsplash.com/photo-1758790122077-499214dc8396?q=80&w=2940&auto=format&fit=crop", // Lush green garden with trees and plants behind fence
   },
   {
     id: 5,
     title: "Seasonal Cleanup",
     category: "Yard Maintenance",
-    image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?q=80&w=2940&auto=format&fit=crop", // Portrait-style image of a well maintained yard
+    image: "https://images.unsplash.com/photo-1689728318937-17d24bc0a65c?q=80&w=2940&auto=format&fit=crop", // a man using a lawn mower to cut grass
   },
   {
     id: 6,
     title: "Canopy Thinning",
     category: "Tree Trimming",
-    image: "https://images.unsplash.com/photo-1598902108854-10e335adac99?q=80&w=2940&auto=format&fit=crop", // Portrait-style image of tall trees
+    image: "https://images.unsplash.com/photo-1767642321050-23f637b1f0be?q=80&w=2940&auto=format&fit=crop", // Arborist trimming tree branches with chainsaw from a lift
   },
 ];
 
