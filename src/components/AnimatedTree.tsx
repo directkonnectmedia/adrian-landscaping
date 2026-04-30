@@ -16,35 +16,49 @@ interface Leaf {
 
 export default function AnimatedTree() {
   const [leaves, setLeaves] = useState<Leaf[]>([]);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Track viewport so falling distances scale properly on mobile
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 640);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   useEffect(() => {
-    // Generate a set of leaves periodically
+    // Generate a set of leaves periodically, scaled for the device.
     const interval = setInterval(() => {
       setLeaves((prev) => {
         // Spawn leaf from random position in the left side of the canopy
-        const startX = 20 + Math.random() * 30; // 20% to 50% width
-        const startY = 10 + Math.random() * 40; // 10% to 50% height
+        const startX = 20 + Math.random() * 30;
+        const startY = 10 + Math.random() * 40;
+
+        // Mobile uses smaller fall distances so leaves stay near the tree
+        const driftMin = isMobile ? 60 : 150;
+        const driftRange = isMobile ? 140 : 350;
+        const fallMin = isMobile ? 100 : 200;
+        const fallRange = isMobile ? 250 : 500;
 
         const newLeaf: Leaf = {
           id: Date.now() + Math.random(),
           startX,
           startY,
-          endX: -150 - Math.random() * 350, // Move 150px to 500px left
-          endY: 200 + Math.random() * 500, // Fall 200px to 700px down
-          duration: 4 + Math.random() * 5, // 4-9 seconds to fall
+          endX: -driftMin - Math.random() * driftRange,
+          endY: fallMin + Math.random() * fallRange,
+          duration: 4 + Math.random() * 5,
           rotation: Math.random() * 360,
           scale: 0.5 + Math.random() * 0.5,
         };
-        // Keep only the last 20 leaves to keep performance high
-        return [...prev, newLeaf].slice(-20);
+        return [...prev, newLeaf].slice(-15); // Keep up to 15 leaves on screen
       });
-    }, 500); // Spawns a leaf every 500ms
+    }, isMobile ? 700 : 500); // Slightly less frequent on mobile to stay smooth
 
     return () => clearInterval(interval);
-  }, []);
+  }, [isMobile]);
 
   return (
-    <div className="relative inline-flex items-center justify-center w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 shrink-0 z-20">
+    <div className="relative inline-flex items-center justify-center w-28 h-28 sm:w-32 sm:h-32 md:w-40 md:h-40 shrink-0 z-20">
       {/* Falling Leaves */}
       {leaves.map((leaf) => (
         <motion.div
@@ -60,7 +74,7 @@ export default function AnimatedTree() {
             duration: leaf.duration,
             ease: "linear",
           }}
-          className="absolute w-4 h-4 md:w-6 md:h-6 z-0 pointer-events-none drop-shadow-md"
+          className="absolute w-3 h-3 sm:w-4 sm:h-4 md:w-6 md:h-6 z-0 pointer-events-none drop-shadow-md"
           style={{ 
             left: `${leaf.startX}%`, 
             top: `${leaf.startY}%`,
@@ -79,8 +93,8 @@ export default function AnimatedTree() {
       {/* The Animated Tree SVG */}
       <motion.svg
         animate={{
-          rotate: [0, 1.5, -1, 0], // Gentle swaying
-          skewX: [0, -1, 0.5, 0], // Wind effect
+          rotate: [0, 1.5, -1, 0],
+          skewX: [0, -1, 0.5, 0],
         }}
         transition={{
           duration: 6,
@@ -100,7 +114,7 @@ export default function AnimatedTree() {
 
         {/* Trunk */}
         <path d="M43 95 C45 60, 48 40, 50 20 C52 40, 55 60, 57 95 Z" fill="#5D4037" />
-        <path d="M43 95 C45 60, 48 40, 50 20 C50 40, 50 60, 50 95 Z" fill="#4E342E" /> {/* Trunk Shadow */}
+        <path d="M43 95 C45 60, 48 40, 50 20 C50 40, 50 60, 50 95 Z" fill="#4E342E" />
         
         {/* Branches */}
         <path d="M50 50 C40 45, 30 40, 25 30" stroke="#5D4037" strokeWidth="3" strokeLinecap="round" fill="none" />

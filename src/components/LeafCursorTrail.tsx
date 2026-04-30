@@ -94,43 +94,65 @@ export default function LeafCursorTrail() {
   }, []);
 
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
+    const trySpawn = (clientX: number, clientY: number) => {
       const now = Date.now();
       lastMoveTime.current = now;
 
-      // Only spawn leaf if cursor has moved enough distance and enough time has passed
-      const dx = e.clientX - lastPos.current.x;
-      const dy = e.clientY - lastPos.current.y;
+      const dx = clientX - lastPos.current.x;
+      const dy = clientY - lastPos.current.y;
       const distance = Math.sqrt(dx * dx + dy * dy);
 
       if (now - lastSpawnTime.current > 60 && distance > 15) {
-        spawnLeaf(e.clientX, e.clientY);
+        spawnLeaf(clientX, clientY);
         lastSpawnTime.current = now;
-        lastPos.current = { x: e.clientX, y: e.clientY };
+        lastPos.current = { x: clientX, y: clientY };
+      }
+    };
+
+    const handleMouseMove = (e: MouseEvent) => {
+      trySpawn(e.clientX, e.clientY);
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      const touch = e.touches[0];
+      if (touch) {
+        trySpawn(touch.clientX, touch.clientY);
+      }
+    };
+
+    const handleTouchStart = (e: TouchEvent) => {
+      const touch = e.touches[0];
+      if (touch) {
+        // Reset position so the first touch always counts as a "move start"
+        lastPos.current = { x: touch.clientX, y: touch.clientY };
+        spawnLeaf(touch.clientX, touch.clientY);
+        lastSpawnTime.current = Date.now();
       }
     };
 
     window.addEventListener("mousemove", handleMouseMove);
-    return () => window.removeEventListener("mousemove", handleMouseMove);
+    window.addEventListener("touchmove", handleTouchMove, { passive: true });
+    window.addEventListener("touchstart", handleTouchStart, { passive: true });
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("touchmove", handleTouchMove);
+      window.removeEventListener("touchstart", handleTouchStart);
+    };
   }, [spawnLeaf]);
 
-  // Disable only on pure touch devices (e.g., phones, tablets without a mouse).
-  // Use `any-hover: none` so touchscreen laptops with a mouse still show the trail.
-  const [isTouchOnly, setIsTouchOnly] = useState(false);
+  // Detect mobile (touch) so we can scale animations accordingly.
+  // The trail itself runs on every device — desktops, tablets, and phones.
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
   useEffect(() => {
     const check = () => {
-      // any-hover: none = NO connected input device can hover (truly touch-only).
-      // any-pointer: coarse without fine = no mouse-like pointer.
       const noHover = window.matchMedia("(any-hover: none)").matches;
-      const noFinePointer = !window.matchMedia("(any-pointer: fine)").matches;
-      setIsTouchOnly(noHover && noFinePointer);
+      const coarsePointer = window.matchMedia("(any-pointer: coarse)").matches;
+      setIsTouchDevice(noHover || coarsePointer);
     };
     check();
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
   }, []);
-
-  if (isTouchOnly) return null;
 
   return (
     <div className="fixed inset-0 pointer-events-none z-[100] overflow-hidden">
@@ -167,7 +189,7 @@ export default function LeafCursorTrail() {
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              className="w-5 h-5 md:w-6 md:h-6 drop-shadow-md"
+              className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 drop-shadow-md"
             >
               {/* Oval leaf shape (matches the AnimatedTree logo leaves) */}
               <path
