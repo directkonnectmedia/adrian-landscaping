@@ -114,16 +114,23 @@ export default function LeafCursorTrail() {
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [spawnLeaf]);
 
-  // Don't render on touch / mobile devices to avoid hijacking interaction
-  const [isMobile, setIsMobile] = useState(false);
+  // Disable only on pure touch devices (e.g., phones, tablets without a mouse).
+  // Use `any-hover: none` so touchscreen laptops with a mouse still show the trail.
+  const [isTouchOnly, setIsTouchOnly] = useState(false);
   useEffect(() => {
-    const check = () => setIsMobile(window.matchMedia("(hover: none)").matches);
+    const check = () => {
+      // any-hover: none = NO connected input device can hover (truly touch-only).
+      // any-pointer: coarse without fine = no mouse-like pointer.
+      const noHover = window.matchMedia("(any-hover: none)").matches;
+      const noFinePointer = !window.matchMedia("(any-pointer: fine)").matches;
+      setIsTouchOnly(noHover && noFinePointer);
+    };
     check();
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
   }, []);
 
-  if (isMobile) return null;
+  if (isTouchOnly) return null;
 
   return (
     <div className="fixed inset-0 pointer-events-none z-[100] overflow-hidden">
